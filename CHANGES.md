@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - moved content of django project restartoai/ directory to parent directory
+- home.views.py to include home_view()
 
 ### Deleted
 
