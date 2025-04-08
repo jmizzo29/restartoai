@@ -21,3 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deleted
 
 - deleted empty restartoai/ project directory after moving contents to parent
+- core/models.py
+- core/views.py
+- core/tests.py
