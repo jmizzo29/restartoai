@@ -17,11 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - core base.html template
 - home/templates/home
 - home home.html template
+- home.urls.py
 
 ### Changed
 
 - moved content of django project restartoai/ directory to parent directory
 - home.views.py to include home_view()
+- restartoai.urls.py to include home urls
 
 ### Deleted
 
