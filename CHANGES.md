@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - requirements.txt
 - restartoai django project
 - core django app
+- home django app
 
 ### Changed
 
