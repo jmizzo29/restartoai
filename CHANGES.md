@@ -11,3 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - requirements.txt
 - restartoai django project
+
+### Changed
+
+- moved content of django project restartoai/ directory to parent directory
+
+### Deleted
+
+- deleted empty restartoai/ project directory after moving contents to parent
