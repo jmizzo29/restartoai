@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - core django app
 - home django app
 - core/templates/core/
+- core base.html template
 
 ### Changed
 
