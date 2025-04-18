@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - home/templates/home
 - home home.html template
 - home.urls.py
+- users app
+- users views
+- users templates
 
 ### Changed
 
