@@ -1,8 +1,134 @@
 <!DOCTYPE html>
-
-{% extends 'core/base.html' %}
-
-{% load static %}
-
-{% block content %}
-{% endblock %}
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>restarto.ai</title>
+    {% include 'core/mixins/fonts.html' %}
+    {% include 'core/mixins/scripts.html' %}
+    {% include 'core/mixins/style.html' %}
+    <link rel="stylesheet" href="{% static 'home/hero.css' %}">
+</head>
+<body>
+    <main>
+        <section class="align-content-center hero" style="background-image: url('media/home/images/background.png');">
+            <div class="container-fluid text-white">
+                {% include 'home/partials/header.html' %}
+                <div class="row align-content-center">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p class="display-1">From Federal to Private: Your Career Transition, Simplified</p>
+                            </div>
+                            <div class="col">
+    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="lead text-white">Ready to make the transition?</p><a class="btn btn-outline-white" href="#">Sign Up Today</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container text-dark">
+                <div class="row text-center py-3">
+                    <div class="col">
+                        <h2>Pricing</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item-primary">
+                                <a class="nav-link active" id="individual-tab" data-bs-toggle="pill" href="#individual" role="tab">Individual</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="companies-tab" data-bs-toggle="pill" href="#companies" role="tab">Companies</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Tab Content -->
+                <div class="tab-content mt-4">
+                    <!-- Individual Pricing -->
+                    <div class="tab-pane fade show active" id="individual" role="tabpanel">
+                        <div class="row justify-content-center">
+                            <!-- Basic Individual Plan -->
+                            <div class="col-md-5 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Free</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">For individuals</h6>
+                                        <h3 class="my-4">$0.00 <small class="text-muted">/mo</small></h3>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> Some Feature</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0">
+                                        <button class="btn btn-outline-primary w-100">Sign Up</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pro Individual Plan -->
+                            <div class="col-md-5 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pro</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">For power users</h6>
+                                        <h3 class="my-4">$19.99 <small class="text-muted">/mo</small></h3>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0">
+                                        <button class="btn btn-primary w-100">Sign Up</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Companies Pricing -->
+                    <div class="tab-pane fade" id="companies" role="tabpanel">
+                        <div class="row justify-content-center">
+                            <!-- Business Plan -->
+                            <div class="col-md-5 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Business</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">For federal agencies and government contractors</h6>
+                                        <h3 class="my-4">$49.99 <small class="text-muted">/mo</small></h3>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-top-0">
+                                        <button class="btn btn-primary w-100">Sign Up</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

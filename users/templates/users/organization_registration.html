@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class="col-9">
+            <h1>Organization Registration</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    {% load crispy_forms_tags %}
+                    <form method="POST">{% csrf_token %}
+                        <h2>Your Info</h2>
+                        {{ user_form|crispy }}
+                        
+                        <h2>Organization Info</h2>
+                        {{ org_form|crispy }}
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

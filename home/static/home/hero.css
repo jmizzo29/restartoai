@@ -1,0 +1,9 @@
+
+.btn-outline-white {
+    border-color: white;
+    color: white;
+}
+
+section {
+    min-height: 100vh;
+}

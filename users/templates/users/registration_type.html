@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form method="post" action="{% url 'users:register' %}" id="typeForm">
+        {% csrf_token %}
+        <input type="hidden" name="account_type" id="accountType">
+        
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="row g-0">
+                    <!-- Individual Card -->
+                    <div class="col-md-6">
+                        <div class="card type-card individual-card" data-type="in">
+                            <div class="card-body text-center">
+                                <h2 class="card-title">Individual</h2>
+                                <p class="display-2 text-primary"><i class="bi bi-person-circle"></i></p>
+                                <p class="card-text">Personal account for individual use</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Organization Card -->
+                    <div class="col-md-6">
+                        <div class="card type-card organization-card" data-type="co">
+                            <div class="card-body text-center">
+                                <h2 class="card-title">Organization</h2>
+                                <p class="display-2 text-primary"><i class="bi bi-building-fill"></i></p>
+                                <p class="card-text">Account for organizations and businesses</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<style>
+.type-card {
+    height: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.type-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+}
+
+.type-card:hover::after {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.individual-card:hover {
+    transform: perspective(1000px) rotateY(-5deg);
+}
+
+.organization-card:hover {
+    transform: perspective(1000px) rotateY(5deg);
+}
+
+.type-card:hover {
+    z-index: 2;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+</style>
+
+<script>
+document.querySelectorAll('.type-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const type = this.dataset.type;
+        document.getElementById('accountType').value = type;
+        document.getElementById('typeForm').submit();
+    });
+});
+</script>
+{% endblock %}
