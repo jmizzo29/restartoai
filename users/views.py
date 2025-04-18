@@ -7,9 +7,9 @@ from django import shortcuts, urls
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from django.views import defaults
 
 from . import forms, mail, utils
+from .messages import UserMessageManager
 
 logger = logging.getLogger("__name__")
 
@@ -127,25 +127,25 @@ def login_non_verified_email(request, email):
     If the user's email is not found, the user is given an error message and
     redirected to the login page.
     """
-    logger.info("Login request. Email: %s", email)
+    print("Login request. Email: %s", email)
 
     try:
         user = User.objects.get(email=email)
-        logger.info("User found: %s", user)
+        print("User found: %s", user)
     except User.DoesNotExist:
-        logger.info("User not found")
-        messages.error(request, mail.UserEmailManager.email_not_found)
+        print("User not found")
+        messages.error(request, UserMessageManager.email_not_found)
         return shortcuts.redirect("users:login")
 
     if user.email_verified:
-        logger.info("Email already verified")
-        messages.error(request, mail.UserEmailManager.email_not_verified)
+        print("Email already verified")
+        messages.error(request, UserMessageManager.email_not_verified)
         return shortcuts.redirect("users:login")
 
     timeout_duration = datetime.timedelta(minutes=10)
 
     if user.last_verification_email_sent:
-        logger.info("Email already sent")
+        print("Email already sent")
         time_since_last_email = utils.get_time_since_last_email(
             user.last_verification_email_sent
         )
@@ -155,25 +155,25 @@ def login_non_verified_email(request, email):
 
         if can_resend:
             url = urls.reverse("users:resend")
-            message = mail.UserEmailManager.resend_verification_email(url)
+            message = UserMessageManager.resend_verification_email(url)
         else:
             minutes_difference = utils.get_minutes_left_before_resend(
                 time_since_last_email, timeout_duration
             )
             minutes_difference = round(minutes_difference)
-            message = mail.UserEmailManager.resend_email_wait(
+            message = UserMessageManager.resend_email_wait(
                 minutes_difference)
     else:
-        logger.info("Email not sent")
+        print("Email not sent")
         url = urls.reverse("users:resend")
-        message = mail.UserEmailManager.resend_verification_email(url)
+        message = UserMessageManager.resend_verification_email(url)
 
     messages.info(request, message)
     return shortcuts.redirect("users:login")
 
 
 def login_view(request):
-    logger.info(f"Login request. Method: {request.method}")
+    print(f"Login request. Method: {request.method}")
 
     # Handle POST request
     if request.method == "POST":
@@ -183,7 +183,7 @@ def login_view(request):
         if form.is_valid():
             # Check if the honeypot field is filled
             if form.cleaned_data["honeypot"]:
-                messages.error(request, mail.UserEmailManager.spam)
+                messages.error(request, UserMessageManager.spam)
                 return shortcuts.redirect("core:home")
 
             # Retrieve the email and password
@@ -203,14 +203,19 @@ def login_view(request):
                             break
 
                     auth.login(request, user)
-                    return shortcuts.redirect("users:dashboard")
+                    print(f"ROLE: {user.role}")
+                    if user.role == "individual":
+
+                        return shortcuts.redirect("individual:dashboard")
+                    else:
+                        return shortcuts.redirect("users:login")
 
             else:
-                logger.info("Email not verified")
+                print("Email not verified")
                 # Handle non-verified email login attempts
                 return login_non_verified_email(request, email)
         else:
-            messages.error(request, mail.UserEmailManager.invalid_login_form)
+            messages.error(request, UserMessageManager.invalid_login_form)
             return shortcuts.redirect("users:login")
     else:
         form = forms.LoginForm()
@@ -240,7 +245,7 @@ def verify_email_view(request, user_id, token):
     if email_verification_token.check_token(user, token):
         user.email_verified = True
         user.save()
-        messages.success(request, mail.UserEmailManager.email_verified)
+        messages.success(request, UserMessageManager.email_verified)
         return shortcuts.redirect("users:login")
 
 
@@ -263,7 +268,7 @@ def resend_view(request):
 
         if form.is_valid():
             if form.cleaned_data["honeypot"]:
-                messages.error(request, mail.UserEmailManager.spam)
+                messages.error(request, UserMessageManager.spam)
 
                 return shortcuts.redirect("core:home")
             email = form.cleaned_data["email"]
@@ -271,7 +276,7 @@ def resend_view(request):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
-                messages.error(request, mail.UserEmailManager.email_not_found)
+                messages.error(request, UserMessageManager.email_not_found)
                 return shortcuts.redirect("users:resend")
 
             timeout_duration = datetime.timedelta(minutes=10)
@@ -294,7 +299,7 @@ def resend_view(request):
                 if time_since_last_email < timeout_duration:
                     messages.info(
                         request,
-                        mail.UserEmailManager.resend_email_wait(
+                        UserMessageManager.resend_email_wait(
                             minutes_difference),
                     )
                     return shortcuts.redirect("users:resend")
@@ -306,7 +311,7 @@ def resend_view(request):
             user.save()
 
             messages.success(
-                request, mail.UserEmailManager.email_verification_sent)
+                request, UserMessageManager.email_verification_sent)
             return shortcuts.redirect("users:login")
     else:
         form = forms.ResendVerificationEmailForm()
@@ -353,7 +358,7 @@ def password_reset_view(request):
         if form.is_valid():
             # Check if the honeypot field is filled
             if form.cleaned_data["honeypot"]:
-                messages.error(request, mail.UserEmailManager.spam)
+                messages.error(request, UserMessageManager.spam)
                 return shortcuts.redirect("home:home")
 
             # Retrieve the email from the form
@@ -365,11 +370,11 @@ def password_reset_view(request):
                 # Send the password reset email
                 email_manager.mail_password_reset(request, user)
                 messages.success(
-                    request, mail.UserEmailManager.password_reset_success)
+                    request, UserMessageManager.password_reset_success)
                 return shortcuts.redirect("users:password_reset")
             else:
                 # If the user does not exist, show an error message
-                messages.error(request, mail.UserEmailManager.email_not_found)
+                messages.error(request, UserMessageManager.email_not_found)
             return shortcuts.redirect("users:password_reset")
     else:
         # If the request is GET,
@@ -402,7 +407,7 @@ def delete_account_view(request):
         user.profile.delete()
         user.delete()
         messages.success(
-            request, mail.UserEmailManager.account_deleted_success)
+            request, UserMessageManager.account_deleted_success)
         return shortcuts.redirect("home:home")
 
     # Render the confirmation page

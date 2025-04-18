@@ -51,7 +51,7 @@ class UserEmailManager(EmailManager):
         # Build verification URL
         verification_url = request.build_absolute_uri(
             reverse(
-                "accounts:verify_email", kwargs={"user_id": user.id, "token": token}
+                "users:verify_email", kwargs={"user_id": user.id, "token": token}
             )
         )
 
@@ -83,7 +83,7 @@ class UserEmailManager(EmailManager):
         # Build password reset URL
         password_reset_url = request.build_absolute_uri(
             reverse(
-                "accounts:password_reset_confirm",
+                "users:password_reset_confirm",
                 kwargs={
                     "uidb64": http.urlsafe_base64_encode(encoding.force_bytes(user.pk)),
                     "token": token,
