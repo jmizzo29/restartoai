@@ -1,6 +1,6 @@
 
 {% if request.path != '/' %}
-<header>
+<header class="my-0">
     <nav class="navbar navbar-expand-lg navbar-light px-5">
         <a class="navbar-brand" href="{% url 'home:home' %}">restarto.ai</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
 
 {% else %}
 
-<header>
+<header class="position-absolute w-100">
     <nav class="navbar navbar-expand-lg navbar-dark px-5">
         <a class="navbar-brand" href="{% url 'home:home' %}">restarto.ai</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

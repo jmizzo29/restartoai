@@ -12,17 +12,20 @@
 </head>
 <body>
     <main>
-        <section class="align-content-center hero" style="background-image: url('media/home/images/background.png');">
-            {% include 'home/partials/header.html' %}
-            <div class="container-fluid text-white">
+        {% include 'home/partials/header.html' %}
+        <section class="align-content-center hero py-0" style="background-image: url('media/home/images/background.png');">
+            
+            <div class="container text-white mx-3">
                 <div class="row align-content-center">
                     <div class="col">
                         <div class="row">
                             <div class="col">
                                 <p class="display-1">Your Career Transition, Simplified</p>
                             </div>
-                            <div class="col">
-    
+                            <div class="col align-content-center">
+                                <p class="d-none d-md-block lead">Power your professional reinvention.</p>
+                                <p class="d-none d-md-block lead">Switch careers confidently.</p>
+                                <p class="d-none d-md-block lead">Redefine your future.</p>
                             </div>
                         </div>
                         <div class="row">
@@ -167,6 +170,162 @@
                                     </div>
                                     <div class="card-footer bg-transparent border-top-0">
                                         <button class="btn btn-primary w-100">Sign Up</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-primary text-light">
+            <div class="container">
+                <div class="row justify-content-center text-center py-3">
+                    <div class="col-10">
+                        <h2>FAQs</h2>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center text-center py-3">
+                    <div class="col-8">
+                        <div class="accordion" id="restartoFAQAccordion">
+                            <!-- FAQ Item 1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                                    What is Restarto.ai?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    Restarto.ai is a career transition platform that helps professionals switch roles or industries by providing personalized mentoring, interview preparation, wellbeing support, and resume optimization services.
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                    Who can benefit from Restarto.ai?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    Our platform is designed for:<br>
+                                    - Professionals looking to switch careers<br>
+                                    - Job seekers preparing for interviews<br>
+                                    - Individuals needing resume improvements<br>
+                                    - Those seeking wellbeing support during career transitions
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                    What services does Restarto.ai offer?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    We provide:<br>
+                                    ✅ <strong>1:1 Career Mentoring</strong> (Premium only)<br>
+                                    ✅ <strong>1:1 Interview Prep</strong> (Premium only)<br>
+                                    ✅ <strong>Wellbeing Services</strong> (Premium only)<br>
+                                    ✅ <strong>Resume Review</strong> (Free & Premium)<br>
+                                    ✅ <strong>Resume Translation</strong> (Free & Premium)
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 4 -->
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                  What's the difference between Free and Premium users?
+                                </button>
+                              </h2>
+                              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    <strong>Free users</strong> get:<br>
+                                    - Resume Review<br>
+                                    - Resume Translation<br><br>
+                                    <strong>Premium users</strong> get everything in Free, plus:<br>
+                                    - 1:1 Mentoring<br>
+                                    - 1:1 Interview Prep<br>
+                                    - Wellbeing Services
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 5 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                                    How much does Premium cost?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    Premium costs $39.99/month, or you can save 17% by purchasing an annual subscription for $399
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 6 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                                    How do I become a Premium user?
+                                    </button>
+                                </h2>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    Once you sign up, you can upgrade to Premium by selecting a subscription plan.
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 7 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                                    How does the 1:1 mentoring work?
+                                    </button>
+                                </h2>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    You'll be matched with an industry expert who will guide you through your career transition with personalized advice.
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 8 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                                    What languages are supported for resume translation?
+                                    </button>
+                                </h2>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    We currently support major languages (English, Spanish, French, German, and more). More languages will be added soon.
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- FAQ Item 9 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9">
+                                    Can I cancel my Premium subscription anytime?
+                                    </button>
+                                </h2>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#restartoFAQAccordion">
+                                    <div class="accordion-body">
+                                    Yes, you can cancel anytime without hidden fees.
                                     </div>
                                 </div>
                             </div>
