@@ -16,6 +16,7 @@
                     <form method="POST">{% csrf_token %}
                         <h2>Your Info</h2>
                         {{ user_form|crispy }}
+                        {{ profile_form|crispy }}
                         
                         <h2>Organization Info</h2>
                         {{ org_form|crispy }}

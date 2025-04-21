@@ -1,6 +1,5 @@
 from .managers import CustomUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib import auth
 
 from django.db import models
 
@@ -38,13 +37,15 @@ class Organization(models.Model):
     ]
     name = models.CharField(max_length=255)
     entity_type = models.CharField(max_length=2, choices=ENTITY_CHOICES)
-    members = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name='members')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, related_name="profile")
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
+    organization = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, related_name="profiles",
+        null=True, blank=True)

@@ -62,6 +62,7 @@ def individual_registration_view(request):
             # Email verification and messages
             messages.success(
                 request, 'Account created! Verify your email.')
+            email_manager.mail_verification(request, user)
             return shortcuts.redirect('users:login')
 
         # Handle form errors
@@ -69,7 +70,7 @@ def individual_registration_view(request):
         return shortcuts.redirect('users:register')
     else:
         user_form = forms.UserRegistrationForm()
-        profile_form = forms.ProfileRegistrationForm()
+        profile_form = forms.IndividualProfileRegistrationForm()
         context = {"user_form": user_form,
                    "profile_form": profile_form}
         return shortcuts.render(request, template_name="users/individual_registration.html", context=context)
@@ -79,8 +80,10 @@ def organization_registration_view(request):
 
     if request.method == "POST":
         user_form = forms.UserRegistrationForm(request.POST)
+        profile_form = forms.OrganizationProfileRegistrationForm(request.POST)
         org_form = forms.OrganizationRegistrationForm(request.POST)
-        if user_form.is_valid() and org_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid() \
+                and org_form.is_valid():
 
             # Save organization linked to the user
             org = org_form.save(commit=False)
@@ -90,11 +93,16 @@ def organization_registration_view(request):
             user = user_form.save(commit=False)
             user.role = 'org_admin'
             user.is_premium = True  # Org admins get premium
-            user.organization = org
             user.save()
+
+            profile = profile_form.save(commit=False)
+            profile.organization = org
+            profile.user = user
+            profile.save()
             # Email verification and messages
             messages.success(
                 request, 'Organization registered! Verify your email.')
+            email_manager.mail_verification(request, user)
             return shortcuts.redirect('users:login')
 
         # Handle form errors
@@ -104,9 +112,11 @@ def organization_registration_view(request):
     else:
 
         user_form = forms.UserRegistrationForm()
+        profile_form = forms.OrganizationProfileRegistrationForm()
         org_form = forms.OrganizationRegistrationForm()
         context = {
             "user_form": user_form,
+            "profile_form": profile_form,
             "org_form": org_form
         }
         return shortcuts.render(request, 'users/organization_registration.html',
@@ -207,8 +217,9 @@ def login_view(request):
                     auth.login(request, user)
                     print(f"ROLE: {user.role}")
                     if user.role == "individual":
-
                         return shortcuts.redirect("individual:dashboard")
+                    elif user.role == "org_admin":
+                        return shortcuts.redirect("organization:dashboard")
                     else:
                         return shortcuts.redirect("users:login")
 

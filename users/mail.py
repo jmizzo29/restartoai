@@ -99,3 +99,30 @@ class UserEmailManager(EmailManager):
         )
         recipient = [user.email]
         self.send(subject, message, html_message, recipient)
+
+    def mail_organization_invitation(self, request, email, organization, token):
+        subject = f"Join {organization.name} on Our Platform"
+        admin_id = request.user.id
+        registration_url = request.build_absolute_uri(
+            reverse('organization:invite_register',
+                    kwargs={'admin_id': admin_id, 'token': token})
+        )
+
+        message = f"""
+        You've been invited to join {organization.name} on our platform.
+        
+        Click the link below to complete your registration:
+        {registration_url}
+        
+        If you didn't request this, please ignore this email.
+        """
+        html_message = message = f""" <p>
+        You've been invited to join {organization.name} on our platform.
+        
+        Click the link below to complete your registration:
+        {registration_url}
+        
+        If you didn't request this, please ignore this email.
+        </p>
+        """
+        self.send(subject, message, html_message, [email])
