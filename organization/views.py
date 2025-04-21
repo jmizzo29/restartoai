@@ -71,30 +71,32 @@ class OrganizationInviteRegistrationView(generic.CreateView):
         return context
 
     def form_valid(self, form):
-        # Get the organization from the admin who sent the invite
-        org_admin = models.CustomUser.objects.get(pk=self.kwargs['admin_id'])
-        organization = org_admin.profile.organization
 
-        # Create user
-        user = form.save(commit=False)
-        user.role = 'individual'
-        user.is_premium = False
-        user.save()
-
-        # Create profile with the organization
         profile_form = forms.IndividualProfileRegistrationForm(
             self.request.POST)
-        if profile_form.is_valid():
+        if form.is_valid() and profile_form.is_valid():
+            # Get the organization from the admin who sent the invite
+            org_admin = models.CustomUser.objects.get(
+                pk=self.kwargs['admin_id'])
+            organization = org_admin.profile.organization
+
+            # Create user
+            user = form.save(commit=False)
+            user.role = 'individual'
+            user.is_premium = True
+            user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.organization = organization
             profile.save()
 
-        # Send verification email
-        mail.UserEmailManager().mail_verification(self.request, user)
+            # Send verification email
+            mail.UserEmailManager().mail_verification(self.request, user)
 
-        messages.success(
-            self.request, 'Account created! Please verify your email.')
+            messages.success(
+                self.request, 'Account created! Please verify your email.')
+        else:
+            messages.error(self.request, 'Error in registering your account.')
         return shortcuts.redirect('users:login')
 
 

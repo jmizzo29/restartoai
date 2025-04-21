@@ -1,21 +1,35 @@
 
-{% extends 'home/base.html' %}
-{% load static %}
-{% block content %}
-<div class="container">
-    <div class="row justify-content-center text-center py-3">
-        <div class="col-10">
-            <h1>Add User</h1>
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>restarto.ai | Registration Invite</title>
+    {% include 'core/mixins/fonts.html' %}
+    {% include 'core/mixins/scripts.html' %}
+    {% include 'core/mixins/style.html' %}
+</head>
+<body>
+    {% include 'home/partials/header.html' %}
+    <div class="container">
+        <div class="row justify-content-center text-center py-3">
+            <div class="col-10">
+                <h1>Add User</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center py-3">
+            <div class="col-10">
+                <form method="post">
+                    {% csrf_token %}
+                    {% load crispy_forms_tags %}
+                    {{ profile_form|crispy }}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center text-center py-3">
-        <div class="col-10">
-            <form method="post">
-                {% csrf_token %}
-                {% load crispy_forms_tags %}
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-outline-primary">Send Invitation</button>
-            </form>
-        </div>
-    </div>
-{% endblock %}
+    {% include 'home/partials/footer.html' %}
+</body>
+</html>

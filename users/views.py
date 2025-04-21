@@ -349,7 +349,7 @@ def logout_view(request):
     """
 
     auth.logout(request)
-    return shortcuts.redirect("core:home")
+    return shortcuts.redirect("users:login")
 
 
 def password_reset_view(request):
