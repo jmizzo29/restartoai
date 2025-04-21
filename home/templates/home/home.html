@@ -34,8 +34,9 @@
                 </div>
             </div>
         </section>
+
         <section>
-            <div class="container text-dark">
+            <div class="container text-dark align-content-center">
                 <div class="row text-center py-3">
                     <div class="col">
                         <h2>Pricing</h2>
@@ -63,14 +64,18 @@
                             <div class="col-md-5 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h5 class="card-title">Free</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">For individuals</h6>
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h3 class="card-title">Free License</h3>
+                                            </div>
+                                        </div>
                                         <h3 class="my-4">$0.00 <small class="text-muted">/mo</small></h3>
                                         <ul class="list-unstyled">
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Translation</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Review</li>
+                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> <s>1:1 Mentoring</s></li>
+                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> <s>1:1 Interview Prep</s></li>
+                                            <li class="mb-2"><i class="bi bi-x text-danger"></i> <s>Self-Care Center</s></li>
                                         </ul>
                                     </div>
                                     <div class="card-footer bg-transparent border-top-0">
@@ -83,14 +88,34 @@
                             <div class="col-md-5 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h5 class="card-title">Pro</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">For power users</h6>
-                                        <h3 class="my-4">$19.99 <small class="text-muted">/mo</small></h3>
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h3 class="card-title">Premium License</h3>
+                                            </div>
+                                            <!-- Smaller price toggle at top-right -->
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <button type="button" id="annualBtn" class="btn btn-outline-primary active">Annual</button>
+                                                <button type="button" id="monthlyBtn" class="btn btn-outline-primary">Monthly</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Price Display -->
+                                        <div id="annualPrice">
+                                            <div class="d-flex align-items-center my-4">
+                                                <h3 class="mb-0">$399 <small class="text-muted">/year</small></h3>
+                                                <span class="text-muted ms-2"><s>$479.88 <small>/year</small></s></span>
+                                            </div>
+                                        </div>
+                                        <div id="monthlyPrice" class="mt-3" style="display: none;">
+                                            <h3 class="my-4">$39.99 <small class="text-muted">/mo</small></h3>
+                                        </div>
+                                        
                                         <ul class="list-unstyled">
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Translation</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Review</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> 1:1 Mentoring</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> 1:1 Interview Prep</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Self-Care Center</li>
                                         </ul>
                                     </div>
                                     <div class="card-footer bg-transparent border-top-0">
@@ -98,9 +123,30 @@
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const annualBtn = document.getElementById('annualBtn');
+                                    const monthlyBtn = document.getElementById('monthlyBtn');
+                                    const annualPrice = document.getElementById('annualPrice');
+                                    const monthlyPrice = document.getElementById('monthlyPrice');
+                                    
+                                    annualBtn.addEventListener('click', function() {
+                                        annualBtn.classList.add('active');
+                                        monthlyBtn.classList.remove('active');
+                                        annualPrice.style.display = 'block';
+                                        monthlyPrice.style.display = 'none';
+                                    });
+                                    
+                                    monthlyBtn.addEventListener('click', function() {
+                                        monthlyBtn.classList.add('active');
+                                        annualBtn.classList.remove('active');
+                                        monthlyPrice.style.display = 'block';
+                                        annualPrice.style.display = 'none';
+                                    });
+                                });
+                            </script>
                         </div>
                     </div>
-                    
                     <!-- Companies Pricing -->
                     <div class="tab-pane fade" id="companies" role="tabpanel">
                         <div class="row justify-content-center">
@@ -108,14 +154,15 @@
                             <div class="col-md-5 mb-4">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h5 class="card-title">Business</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">For federal agencies and government contractors</h6>
+                                        <h3 class="card-title">Organization</h3>
+                                        <h6 class="card-subtitle mb-2 text-muted">Unlimited Premium Accounts</h6>
                                         <h3 class="my-4">$49.99 <small class="text-muted">/mo</small></h3>
                                         <ul class="list-unstyled">
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
-                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Some Feature</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Translation</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Resume Review</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> 1:1 Mentoring</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> 1:1 Interview Prep</li>
+                                            <li class="mb-2"><i class="bi bi-check text-success"></i> Self-Care Center</li>
                                         </ul>
                                     </div>
                                     <div class="card-footer bg-transparent border-top-0">
@@ -123,7 +170,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
