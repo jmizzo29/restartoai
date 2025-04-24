@@ -48,7 +48,7 @@ def individual_registration_view(request):
 
     if request.method == 'POST':
         user_form = forms.UserRegistrationForm(request.POST)
-        profile_form = forms.ProfileRegistrationForm(request.POST)
+        profile_form = forms.IndividualProfileRegistrationForm(request.POST)
         if user_form.is_valid() and profile_form.is_valid():
             # Save user with individual role
             user = user_form.save(commit=False)

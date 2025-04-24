@@ -67,12 +67,12 @@ class OrganizationInviteRegistrationView(generic.CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile_form'] = forms.IndividualProfileRegistrationForm()
+        context['profile_form'] = forms.OrganizationProfileRegistrationForm()
         return context
 
     def form_valid(self, form):
 
-        profile_form = forms.IndividualProfileRegistrationForm(
+        profile_form = forms.OrganizationProfileRegistrationForm(
             self.request.POST)
         if form.is_valid() and profile_form.is_valid():
             # Get the organization from the admin who sent the invite

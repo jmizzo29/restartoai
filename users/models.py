@@ -26,6 +26,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
+    def save(self, *args, **kwargs):
+        if self.is_staff:
+            self.email_verified = True
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.email
 
