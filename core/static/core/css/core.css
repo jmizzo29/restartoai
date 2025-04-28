@@ -33,3 +33,11 @@ main {
         }
     }
 }
+
+.text-accent-primary {
+    color: #7F3BB3;
+}
+
+.text-accent-secondary {
+    color: #D57B54;
+}

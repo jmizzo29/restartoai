@@ -23,9 +23,27 @@
                                 <p class="display-1">Your Career Transition, Simplified</p>
                             </div>
                             <div class="col-6 align-content-center">
-                                <p class="d-none d-md-block lead">Power your professional reinvention.</p>
-                                <p class="d-none d-md-block lead">Switch careers confidently.</p>
-                                <p class="d-none d-md-block lead">Redefine your future.</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="display-6">What does restarto.ai do?</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-outline-white" data-bs-toggle="modal" data-bs-target="#spotlightModal">
+                                                <i class="lead bi bi-stars"></i>
+                                            </button>
+                                            <button class="btn btn-outline-white" data-bs-toggle="modal" data-bs-target="#interviewModal">
+                                                <i class="lead bi bi-people-fill"></i>
+                                            </button>
+                                            <button class="btn btn-outline-white" data-bs-toggle="modal" data-bs-target="#wellbeingModal">
+                                                <i class="lead bi bi-heart-fill"></i>
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -42,7 +60,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section>
             <div class="container text-dark align-content-center">
                 <div class="row text-center py-3">
@@ -367,5 +385,61 @@
         </section>
     </main>
 </body>
+
+<div class="modal fade" id="spotlightModal" tabindex="-1" aria-labelledby="spotlightModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="spotlightModalLabel"><i class="text-accent-primary bi bi-stars"></i> Daily Individual Spotlight</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Elevate your visibility and attract new opportunities 
+                    with our <strong>Daily Individual Spotlight</strong>! 
+                    Each day, we showcase a premium user to our entire 
+                    community, highlighting their skills, expertise, 
+                    and unique offerings. This exclusive feature helps 
+                    you stand out, gain exposure, and connect with 
+                    potential employers.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="interviewModal" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="interviewModalLabel"><i class="text-accent-secondary bi bi-people-fill"></i> 1:1 Interview Prep</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Ace your next opportunity with personalized <strong>1:1 Interview Prep</strong>! Our experts will work with you one-on-one to refine your pitch, tackle tough questions, and build confidence - so you can impress interviewers and land your dream job.
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="wellbeingModal" tabindex="-1" aria-labelledby="wellbeingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="wellbeingModalLabel"><i class="text-accent-primary bi bi-heart-fill"></i> 1:1 Wellbeing Sessions</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Prioritize your mental and emotional health with <strong>1:1 Wellbeing Sessions</strong> 
+                    - personalized check-ins designed to 
+                    help you manage stress, stay motivated, and thrive in 
+                    your job search. Our supportive experts provide a confidential 
+                    space to reflect, recharge, and build resilience.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 {% include 'home/partials/footer.html' %}
 </html>
